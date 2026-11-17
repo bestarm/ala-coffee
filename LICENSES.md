@@ -16,4 +16,4 @@ Nguồn font: Google Fonts.
 
 ## Hình ảnh thương hiệu
 
-Logo gốc do khách hàng cung cấp. Các ảnh sản phẩm Degas được tạo riêng cho dự án bằng công cụ tạo ảnh tích hợp của OpenAI.
+Logo SVG và favicon được dựng theo ảnh tham chiếu Ala do khách hàng cung cấp. Các ảnh sản phẩm được cập nhật nhận diện Ala bằng công cụ imagegen tích hợp của OpenAI. Chi tiết prompt và tài sản nằm trong `assets/images/README.md`.

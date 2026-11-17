@@ -13,7 +13,7 @@ const categories = [
 const menu = [
   { id:'espresso', category:'coffee', name:'Espresso Solo', price:25000, description:'Một shot gọn, crema dày, hậu vị cacao và hạt rang.' },
   { id:'americano', category:'coffee', name:'Americano Trong Veo', price:28000, description:'Espresso kéo dài với nước nóng, nhẹ thân nhưng rõ hương.' },
-  { id:'degas-sua-da', category:'coffee', name:'Degas Sữa Đá', price:32000, description:'Cà phê đậm, sữa đặc vừa đủ và đá già giòn.' },
+  { id:'ala-sua-da', category:'coffee', name:'Ala Sữa Đá', price:32000, description:'Cà phê đậm, sữa đặc vừa đủ và đá già giòn.' },
   { id:'bac-xiu', category:'coffee', name:'Bạc Xỉu Ánh Kem', price:35000, description:'Nhiều sữa, một nhịp cà phê và lớp bọt mịn.' },
   { id:'caramel-latte', category:'coffee', name:'Latte Caramel Nâu', price:38000, description:'Espresso, sữa tươi và caramel nấu nhẹ tại quán.' },
   { id:'cam-dua', category:'juice', name:'Cam Dứa Rạng Đông', price:35000, description:'Cam tươi và dứa chín, ép lạnh khi bạn gọi.' },
@@ -24,12 +24,12 @@ const menu = [
   { id:'tra-chanh-day', category:'fruit-tea', name:'Trà Chanh Dây Nắng', price:35000, description:'Chanh dây tươi, trà xanh và bạc hà mát.' },
   { id:'tra-vai', category:'fruit-tea', name:'Trà Vải Cánh Hoa', price:38000, description:'Vải ngọt thanh, trà lài và cánh hồng khô.' },
   { id:'tra-dau', category:'fruit-tea', name:'Trà Dâu Hoàng Hôn', price:38000, description:'Dâu đỏ, trà ô long và chanh vàng tươi.' },
-  { id:'tra-nhiet-doi', category:'fruit-tea', name:'Trà Nhiệt Đới Degas', price:40000, description:'Xoài, dứa, chanh dây và trà nhài trong một nhịp.' },
+  { id:'tra-nhiet-doi', category:'fruit-tea', name:'Trà Nhiệt Đới Ala', price:40000, description:'Xoài, dứa, chanh dây và trà nhài trong một nhịp.' },
   { id:'tra-sua-truyen-thong', category:'milk-tea', name:'Trà Sữa Gấm Nâu', price:30000, description:'Hồng trà đậm, sữa béo vừa và đường nâu thơm.' },
   { id:'tra-sua-oolong', category:'milk-tea', name:'Ô Long Kem Mây', price:35000, description:'Ô long rang, sữa tươi và lớp kem mặn mỏng.' },
   { id:'tra-sua-matcha', category:'milk-tea', name:'Matcha Vũ Điệu', price:38000, description:'Matcha thanh, sữa tươi và chút mật ong.' },
   { id:'tra-sua-caramel', category:'milk-tea', name:'Caramel Trân Châu', price:40000, description:'Trà sữa caramel, trân châu đen nấu trong ngày.' },
-  { id:'degas-motion', category:'signature', name:'Degas Motion', price:40000, description:'Espresso, chocolate đen và kem muối—đậm, mượt, dài.' },
+  { id:'ala-motion', category:'signature', name:'Ala Motion', price:40000, description:'Espresso, chocolate đen và kem muối—đậm, mượt, dài.' },
   { id:'petrol-cloud', category:'signature', name:'Petrol Cloud', price:40000, description:'Ô long hoa, sữa tươi và lớp kem xanh thực vật tinh tế.' },
   { id:'golden-hour', category:'signature', name:'Golden Hour', price:40000, description:'Trà đào, cam vàng, mật ong và bọt chanh thơm.' }
 ];
@@ -63,13 +63,13 @@ function categoryLabel(id) {
 }
 
 function loadCart() {
-  try { return JSON.parse(localStorage.getItem('degas-cart')) || []; }
+  try { return JSON.parse(localStorage.getItem('ala-cart')) || []; }
   catch { return []; }
 }
 
 function saveCart() {
   // Storage can be blocked or full; keep the in-memory cart usable.
-  try { localStorage.setItem('degas-cart', JSON.stringify(state.cart)); }
+  try { localStorage.setItem('ala-cart', JSON.stringify(state.cart)); }
   catch { /* The cart remains available until the page is reloaded. */ }
 }
 
@@ -236,7 +236,7 @@ function buildOrderText(form) {
   const data = new FormData(form);
   const isDelivery = data.get('fulfillment') === 'delivery';
   const lines = [
-    'DEGAS COFFEE — ĐƠN TẠM',
+    'ALA COFFEE — ĐƠN TẠM',
     '——————————————',
     ...state.cart.map((item, index) => `${index + 1}. ${item.name} × ${item.qty}\n   ${itemDescription(item)}\n   ${money.format(item.unitPrice * item.qty)}`),
     '——————————————',
@@ -295,7 +295,7 @@ function setupAudio() {
     invite.setAttribute('aria-pressed', String(playing));
     inviteLabel.textContent = playing
       ? 'Nhạc đang phát · chạm để tạm dừng'
-      : blocked ? 'Chạm để bật không gian âm nhạc' : 'Phát lại không gian Degas';
+      : blocked ? 'Chạm để bật không gian âm nhạc' : 'Phát lại không gian Ala';
   };
 
   const startAudio = async (announce = false) => {
